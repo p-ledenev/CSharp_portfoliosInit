@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace portfoliosInit
 {
     class InitDataReader
     {
-        // TODO create default list if not exist
+        public static String fileName = "data/init.dat";
 
         public static List<Portfolio> read()
         {
-            String[] lines = File.ReadAllLines("data/init.dat");
+            if (!File.Exists(fileName))
+                createDefaultInitFile();
+
+            String[] lines = File.ReadAllLines(fileName);
 
             List<Portfolio> portfolios = new List<Portfolio>();
             Portfolio portfolio = null;
@@ -24,7 +28,7 @@ namespace portfoliosInit
                 int value;
                 if (!Int32.TryParse(attrs[0], out value))
                 {
-                    portfolio = new Portfolio(attrs[0], attrs[1], Double.Parse(attrs[2]));
+                    portfolio = new Portfolio(attrs[0], attrs[1], Double.Parse(attrs[2].Replace('.', ',')));
                     portfolios.Add(portfolio);
                 }
 
@@ -32,6 +36,23 @@ namespace portfoliosInit
             }
 
             return portfolios;
+        }
+
+        private static void createDefaultInitFile()
+        {
+            StreamWriter file = new StreamWriter(fileName);
+
+            addPortfolioTo(file, "USD-9.15;AveragingStrategy;0.0145");
+            addPortfolioTo(file, "USD-9.15;ApproximationStrategy;0.0145");
+
+            file.Close();
+        }
+
+        private static void addPortfolioTo(StreamWriter file, String portfolio)
+        {
+            file.Write(portfolio + "\n", 0, portfolio + "\n");
+            for (int i = 0; i < 5; i++)
+                file.Write((50 + 25 * i) + ";N;0\n");
         }
     }
 }

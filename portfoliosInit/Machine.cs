@@ -2,7 +2,7 @@
 
 namespace portfoliosInit
 {
-    class Machine
+    public class Machine
     {
         public Int32 depth;
         public String position;

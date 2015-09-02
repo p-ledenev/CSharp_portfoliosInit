@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace portfoliosInit
 {
-    class Portfolio
+    public class Portfolio
     {
         public String security;
         public String strategy;
