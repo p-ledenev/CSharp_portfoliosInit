@@ -34,7 +34,7 @@ namespace portfoliosInit
             splitContainer = new SplitContainer();
             unblockAllButton = new Button();
             applyButton = new Button();
-            strategyComboBox = new ComboBox();
+            strategyComboBox = new ComboBoxWithPrevious();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -98,6 +98,7 @@ namespace portfoliosInit
             applyButton.TabIndex = 1;
             applyButton.Text = "Apply";
             applyButton.UseVisualStyleBackColor = true;
+            applyButton.Click += new System.EventHandler(applyButtonClicked);
             // 
             // StrategyComboBox
             // 
@@ -107,7 +108,7 @@ namespace portfoliosInit
             strategyComboBox.Name = "strategyComboBox";
             strategyComboBox.Size = new System.Drawing.Size(201, 28);
             strategyComboBox.TabIndex = 0;
-            strategyComboBox.SelectedIndexChanged += new System.EventHandler(strategyComboBox_SelectedIndexChanged);
+            strategyComboBox.SelectedIndexChanged += new System.EventHandler(strategyComboBoxSelectedIndexChanged);
             // 
             // label4
             // 
@@ -156,7 +157,7 @@ namespace portfoliosInit
             addButton.Size = new System.Drawing.Size(77, 28);
             addButton.Text = "...";
             addButton.UseVisualStyleBackColor = true;
-            addButton.Click += new System.EventHandler(addButton_Click);
+            addButton.Click += new System.EventHandler(addButtonClicked);
             setAddButtonPosition();
             // 
             // ApplicationForm
@@ -179,7 +180,7 @@ namespace portfoliosInit
         private SplitContainer splitContainer;
         private Button unblockAllButton;
         private Button applyButton;
-        private ComboBox strategyComboBox;
+        private ComboBoxWithPrevious strategyComboBox;
         private Label label2;
         private Label label1;
         private Label label4;

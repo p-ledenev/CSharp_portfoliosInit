@@ -79,5 +79,13 @@ namespace portfoliosInit
             controls.Add(amountTextBox);
             controls.Add(deleteCheckBox);
         }
+
+        public void removeFrom(Control.ControlCollection controls)
+        {
+            controls.Remove(depthTextBox);
+            controls.Remove(statusLabel);
+            controls.Remove(amountTextBox);
+            controls.Remove(deleteCheckBox);
+        }
     }
 }

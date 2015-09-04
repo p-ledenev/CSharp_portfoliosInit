@@ -30,6 +30,7 @@ namespace portfoliosInit
                 {
                     portfolio = new Portfolio(attrs[0], attrs[1], Double.Parse(attrs[2].Replace('.', ',')));
                     portfolios.Add(portfolio);
+                    continue;
                 }
 
                 portfolio.add(new Machine(value, attrs[1], (Int32.Parse(attrs[2]) == 1)));
