@@ -44,21 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationForm.cs">
+    <Compile Include="ApplicationWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationForm.Designer.cs" />
+    <Compile Include="ApplicationWindow.Designer.cs" />
     <Compile Include="ComboBoxWithPrevious.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="InitDataReader.cs" />
     <Compile Include="Machine.cs" />
-    <Compile Include="MachinesForm.cs" />
-    <Compile Include="MachinesFormBuilder.cs" />
+    <Compile Include="MachineAmount.cs" />
+    <Compile Include="MachineForm.cs" />
+    <Compile Include="MachineFormsBuilder.cs" />
+    <Compile Include="MachinesBuilder.cs" />
     <Compile Include="Portfolio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Runner.cs" />
-    <EmbeddedResource Include="ApplicationForm.resx" />
+    <EmbeddedResource Include="ApplicationWindow.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

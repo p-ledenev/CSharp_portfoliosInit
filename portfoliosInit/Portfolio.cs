@@ -24,5 +24,16 @@ namespace portfoliosInit
         {
             machines.Add(machine);
         }
+
+        public String print()
+        {
+            return security + ";" + strategy + ";" + sieveParam.ToString().Replace(',', '.');
+        }
+
+        public void unblockAllMachines()
+        {
+            foreach (var machine in machines)
+                machine.blocked = false;
+        }
     }
 }

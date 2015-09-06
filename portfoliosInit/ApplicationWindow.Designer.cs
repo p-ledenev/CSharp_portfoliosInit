@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace portfoliosInit
 {
-    partial class ApplicationForm
+    partial class ApplicationWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace portfoliosInit
         {
             splitContainer = new SplitContainer();
             unblockAllButton = new Button();
-            applyButton = new Button();
+            saveButton = new Button();
             strategyComboBox = new ComboBoxWithPrevious();
             label4 = new Label();
             label3 = new Label();
@@ -41,7 +41,7 @@ namespace portfoliosInit
             label1 = new Label();
             addButton = new Button();
 
-            machineForms = new List<MachinesForm>();
+            machineForms = new List<MachineForm>();
 
             ((System.ComponentModel.ISupportInitialize)(splitContainer)).BeginInit();
             splitContainer.Panel1.SuspendLayout();
@@ -59,7 +59,7 @@ namespace portfoliosInit
             // splitContainer.Panel1
             // 
             splitContainer.Panel1.Controls.Add(unblockAllButton);
-            splitContainer.Panel1.Controls.Add(applyButton);
+            splitContainer.Panel1.Controls.Add(saveButton);
             splitContainer.Panel1.Controls.Add(strategyComboBox);
             // 
             // splitContainer.Panel2
@@ -88,17 +88,19 @@ namespace portfoliosInit
             unblockAllButton.TabIndex = 2;
             unblockAllButton.Text = "Unblock All";
             unblockAllButton.UseVisualStyleBackColor = true;
+            unblockAllButton.Click += new System.EventHandler(unblockButtonClicked);
+
             // 
-            // applyButton
+            // saveButton
             // 
-            applyButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            applyButton.Location = new System.Drawing.Point(226, 12);
-            applyButton.Name = "applyButton";
-            applyButton.Size = new System.Drawing.Size(148, 28);
-            applyButton.TabIndex = 1;
-            applyButton.Text = "Apply";
-            applyButton.UseVisualStyleBackColor = true;
-            applyButton.Click += new System.EventHandler(applyButtonClicked);
+            saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            saveButton.Location = new System.Drawing.Point(226, 12);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new System.Drawing.Size(148, 28);
+            saveButton.TabIndex = 1;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += new System.EventHandler(saveButtonClicked);
             // 
             // StrategyComboBox
             // 
@@ -179,7 +181,7 @@ namespace portfoliosInit
 
         private SplitContainer splitContainer;
         private Button unblockAllButton;
-        private Button applyButton;
+        private Button saveButton;
         private ComboBoxWithPrevious strategyComboBox;
         private Label label2;
         private Label label1;
@@ -187,7 +189,7 @@ namespace portfoliosInit
         private Label label3;
         private Button addButton;
 
-        private List<MachinesForm> machineForms;
+        private List<MachineForm> machineForms;
 
     }
 }

@@ -5,16 +5,20 @@ using System.Windows.Forms;
 
 namespace portfoliosInit
 {
-    public partial class ApplicationForm : Form
+    public partial class ApplicationWindow : Form
     {
         private List<Portfolio> portfolios;
 
-        public ApplicationForm()
+        public ApplicationWindow()
         {
             InitializeComponent();
 
             portfolios = InitDataReader.read();
+            initCombobox();
+        }
 
+        private void initCombobox()
+        {
             foreach (var portfolio in portfolios)
                 strategyComboBox.Items.Add(portfolio.strategy);
 
@@ -23,28 +27,36 @@ namespace portfoliosInit
 
         private void addButtonClicked(object sender, EventArgs e)
         {
-            MachinesForm machineForm = new MachinesForm(machineForms.Count);
-            addMachineForms(new List<MachinesForm>(){machineForm});
+            MachineForm machineForm = MachineForm.create(machineForms.Count);
+            addMachineForms(new List<MachineForm>() { machineForm });
         }
 
-        private void applyButtonClicked(object sender, EventArgs e)
+        private void saveButtonClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            int k = strategyComboBox.SelectedIndex;
+            portfolios[k].machines = MachinesBuilder.build(machineForms);
+
+            InitDataReader.write(portfolios);
         }
 
         private void strategyComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             applyChangesToPreviousSelectedPortfolio();
 
-            List<MachinesForm> forms = MachinesFormBuilder.build(portfolios[strategyComboBox.SelectedIndex]);
+            List<MachineForm> forms = MachineFormsBuilder.build(portfolios[strategyComboBox.SelectedIndex]);
             clearMachineForms();
             addMachineForms(forms);
+
+            strategyComboBox.previousIndex = strategyComboBox.SelectedIndex;
         }
 
         private void applyChangesToPreviousSelectedPortfolio()
         {
-            // TODO not working
-            int k =strategyComboBox.previousIndex;
+            int k = strategyComboBox.previousIndex;
+            if (k < 0)
+                return;
+
+            portfolios[k].machines = MachinesBuilder.build(machineForms);
         }
 
         private void clearMachineForms()
@@ -55,7 +67,7 @@ namespace portfoliosInit
             machineForms.Clear();
         }
 
-        private void addMachineForms(List<MachinesForm> forms)
+        private void addMachineForms(List<MachineForm> forms)
         {
             machineForms.AddRange(forms);
 
@@ -68,6 +80,18 @@ namespace portfoliosInit
         private void setAddButtonPosition()
         {
             addButton.Location = new Point(29, machineForms.Count * 40 + 60);
+        }
+
+        private void unblockButtonClicked(object sender, EventArgs e)
+        {
+            portfolios = InitDataReader.read();
+            foreach (var portfolio in portfolios)
+                portfolio.unblockAllMachines();
+
+            strategyComboBox.Items.Clear();
+            initCombobox();
+
+            InitDataReader.write(portfolios);
         }
     }
 }

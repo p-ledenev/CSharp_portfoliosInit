@@ -39,6 +39,20 @@ namespace portfoliosInit
             return portfolios;
         }
 
+        public static void write(List<Portfolio> portfolios)
+        {
+            StreamWriter file = new StreamWriter(fileName);
+
+            foreach (var portfolio in portfolios)
+            {
+                file.Write(portfolio.print() + "\n");
+                foreach (var machine in portfolio.machines)
+                    file.Write(machine.print() + "\n");
+            }
+
+            file.Close();
+        }
+
         private static void createDefaultInitFile()
         {
             StreamWriter file = new StreamWriter(fileName);
