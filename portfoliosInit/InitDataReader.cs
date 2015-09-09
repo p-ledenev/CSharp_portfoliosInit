@@ -7,7 +7,7 @@ namespace portfoliosInit
 {
     class InitDataReader
     {
-        public static String fileName = "data/init.dat";
+        public static String fileName = "init.dat";
 
         public static List<Portfolio> read()
         {
@@ -48,6 +48,7 @@ namespace portfoliosInit
                 file.Write(portfolio.print() + "\n");
                 foreach (var machine in portfolio.machines)
                     file.Write(machine.print() + "\n");
+                file.Write("\n");
             }
 
             file.Close();
