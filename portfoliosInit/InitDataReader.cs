@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 
 namespace portfoliosInit
@@ -28,7 +27,7 @@ namespace portfoliosInit
                 int value;
                 if (!Int32.TryParse(attrs[0], out value))
                 {
-                    portfolio = new Portfolio(attrs[0], attrs[1], Double.Parse(attrs[2].Replace('.', ',')));
+                    portfolio = new Portfolio(attrs[0], attrs[1], Double.Parse(attrs[2].Replace('.', ',')), Int32.Parse(attrs[3]));
                     portfolios.Add(portfolio);
                     continue;
                 }

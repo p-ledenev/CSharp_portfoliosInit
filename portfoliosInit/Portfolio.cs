@@ -5,19 +5,33 @@ namespace portfoliosInit
 {
     public class Portfolio
     {
-        public String security;
-        public String strategy;
-        public double sieveParam;
+        public enum Strategy
+        {
+            AveragingStrategy,
+            ApproximationStrategy
+        };
 
+        public String security { get; set; }
+        public String strategy { get; set; }
+        public double sieveParam { get; set; }
+        public int fillingGapsNumber { get; set; }
         public List<Machine> machines { get; set; }
 
-        public Portfolio(String security, String strategy, double sieveParam)
+        public Portfolio()
+        {
+            machines = new List<Machine>();
+            security = "USD-9.16";
+            strategy = "";
+            sieveParam = 0.0145;
+            fillingGapsNumber = 2000;
+        }
+
+        public Portfolio(String security, String strategy, double sieveParam, int fillingGapsNumber) : this()
         {
             this.strategy = strategy;
             this.security = security;
             this.sieveParam = sieveParam;
-
-            machines = new List<Machine>();
+            this.fillingGapsNumber = fillingGapsNumber;
         }
 
         public void add(Machine machine)
@@ -27,13 +41,19 @@ namespace portfoliosInit
 
         public String print()
         {
-            return security + ";" + strategy + ";" + sieveParam.ToString().Replace(',', '.');
+            return security + ";" + strategy + ";" + sieveParam.ToString().Replace(',', '.') + ";" + fillingGapsNumber;
         }
 
         public void unblockAllMachines()
         {
             foreach (var machine in machines)
                 machine.blocked = false;
+        }
+
+        public String getPortfolioTitle()
+        {
+            return security + "; " + strategy + "; sieve: " + sieveParam +
+                   "; gaps: " + fillingGapsNumber;
         }
     }
 }

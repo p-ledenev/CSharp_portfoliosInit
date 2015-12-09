@@ -14,7 +14,7 @@ namespace portfoliosInit
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ApplicationWindow());
+            Application.Run(new ApplicationForm());
         }
     }
 }
